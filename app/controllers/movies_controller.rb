@@ -9,8 +9,6 @@ class MoviesController < ApplicationController
     render "movies/search"
   end
 
-  # GET /movies
-  # GET /movies.json
   def index
     @movies = Movie.all
 
@@ -20,8 +18,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # GET /movies/1
-  # GET /movies/1.json
   def show
     @movie = Movie.find(params[:id])
 
@@ -31,8 +27,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # GET /movies/new
-  # GET /movies/new.json
   def new
     @movie = Movie.new
 
@@ -42,13 +36,18 @@ class MoviesController < ApplicationController
     end
   end
 
-  # GET /movies/1/edit
   def edit
     @movie = Movie.find(params[:id])
   end
 
-  # POST /movies
-  # POST /movies.json
+  def fave
+    @imovie = Imdb::Movie.new(params[:movie_id])
+    movie = Movie.new
+    movie.title = @imovie.title
+    movie.save
+    redirect_to '/movies'
+  end
+
   def create
     @movie = Movie.new(params[:movie])
 
@@ -63,8 +62,6 @@ class MoviesController < ApplicationController
     end
   end
 
-  # PUT /movies/1
-  # PUT /movies/1.json
   def update
     @movie = Movie.find(params[:id])
 

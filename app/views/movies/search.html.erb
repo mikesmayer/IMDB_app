@@ -1,8 +1,9 @@
 <b>Search Results</b>
-<ul>
+<table>
 <% @movies.each do |movie| %>
-<li>
-<%= movie.title %>
-</li>
+<tr>
+  <td><%= movie.title %></td>
+  <td><%= button_to "Save", fave_path(movie_id: movie.id) %></td>
+</tr>
 <% end %>
-</ul>
+</table>
